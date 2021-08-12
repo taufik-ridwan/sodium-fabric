@@ -106,12 +106,12 @@ public class RenderSectionManager implements ChunkStatusListener {
     private int currentFrame = 0;
 
     public RenderSectionManager(SodiumWorldRenderer worldRenderer, ResourceResolver resourceResolver, BlockRenderPassManager renderPassManager, ClientWorld world, int renderDistance) {
-        this.chunkRenderer = new RegionChunkRenderer(RenderDevice.INSTANCE, resourceResolver, ChunkModelVertexFormats.DEFAULT, renderPassManager);
+        this.chunkRenderer = new RegionChunkRenderer(RenderDevice.INSTANCE, resourceResolver, ChunkModelVertexFormats.EXTENDED, renderPassManager);
 
         this.worldRenderer = worldRenderer;
         this.world = world;
 
-        this.builder = new ChunkBuilder(ChunkModelVertexFormats.DEFAULT);
+        this.builder = new ChunkBuilder(ChunkModelVertexFormats.EXTENDED);
         this.builder.init(world, renderPassManager);
 
         this.needsUpdate = true;

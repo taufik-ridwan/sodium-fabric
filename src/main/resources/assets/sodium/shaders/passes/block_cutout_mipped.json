@@ -4,7 +4,7 @@
   "shader": {
     "source": "sodium:shaders/block_layer_generic",
     "constants": {
-      "ALPHA_CUTOFF": "0.5"
+      "ALPHA_CUTOFF": "0.1"
     }
   }
 }

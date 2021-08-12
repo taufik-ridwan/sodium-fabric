@@ -83,6 +83,8 @@ public class ChunkRenderRebuildTask extends ChunkRenderBuildTask {
                     boolean rendered = false;
 
                     if (blockState.getRenderType() == BlockRenderType.MODEL) {
+                        buffers.setMaterialId(blockState, (short) -1);
+
                         BakedModel model = cache.getBlockModels()
                                 .getModel(blockState);
 
@@ -91,14 +93,21 @@ public class ChunkRenderRebuildTask extends ChunkRenderBuildTask {
                         if (cache.getBlockRenderer().renderModel(slice, blockState, blockPos, offset, model, buffers.getModelBuilder(blockState), true, seed)) {
                             rendered = true;
                         }
+
+                        buffers.resetMaterialId();
                     }
 
                     FluidState fluidState = blockState.getFluidState();
 
                     if (!fluidState.isEmpty()) {
+                        // All fluids have a ShadersMod render type of 1, to match behavior of Minecraft 1.7 and earlier.
+                        buffers.setMaterialId(fluidState.getBlockState(), (short) 1);
+
                         if (cache.getFluidRenderer().render(slice, fluidState, blockPos, offset, buffers.getModelBuilder(fluidState))) {
                             rendered = true;
                         }
+
+                        buffers.resetMaterialId();
                     }
 
                     if (blockState.hasBlockEntity()) {

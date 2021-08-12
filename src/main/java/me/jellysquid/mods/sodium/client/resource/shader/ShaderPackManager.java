@@ -39,7 +39,7 @@ public class ShaderPackManager {
     public ResourceResolver createResourceResolver() {
         List<NamedResourceProvider> loaders = new ArrayList<>();
         loaders.addAll(loadInternalResourceResolvers());
-        loaders.addAll(loadExternalResourceResolvers());
+        //loaders.addAll(loadExternalResourceResolvers());
 
         return new ResourceResolver(loaders);
     }
