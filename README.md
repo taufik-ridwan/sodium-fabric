@@ -4,7 +4,7 @@ This is a fork of Sodium adding Iris compatibility. It's experimental and is mai
 
 ## Notes on compiling the fork
 
-**You will need to install JDK 8** in order to build this fork. You can either install this through
+**You will need to install JDK 16** in order to build this fork. You can either install this through
 a package manager such as [Chocolatey](https://chocolatey.org/) on Windows or [SDKMAN!](https://sdkman.io/) on other
 platforms. If you'd prefer to not use a package manager, you can always grab the installers or packages directly from
 [AdoptOpenJDK](https://adoptopenjdk.net/).
