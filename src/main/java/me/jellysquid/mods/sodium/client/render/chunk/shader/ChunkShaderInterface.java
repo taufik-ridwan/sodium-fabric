@@ -13,6 +13,7 @@ import net.coderbot.iris.gl.program.ProgramSamplers;
 import net.coderbot.iris.gl.program.ProgramUniforms;
 import net.coderbot.iris.texunits.TextureUnit;
 import org.jetbrains.annotations.Nullable;
+import org.lwjgl.opengl.GL32C;
 
 /**
  * A forward-rendering shader program for chunks.

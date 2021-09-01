@@ -134,7 +134,7 @@ public class RenderSectionManager implements ChunkStatusListener {
             this.rebuildQueues.put(type, new ObjectArrayFIFOQueue<>());
         }
 
-        this.chunkRenderer = new RegionChunkRenderer(RenderDevice.INSTANCE, ChunkModelVertexFormats.DEFAULT, (float) Math.sqrt(this.detailFarPlane));
+        this.chunkRenderer = new RegionChunkRenderer(RenderDevice.INSTANCE, ChunkModelVertexFormats.EXTENDED, (float) Math.sqrt(this.detailFarPlane));
     }
 
     public void loadChunks() {
@@ -228,12 +228,16 @@ public class RenderSectionManager implements ChunkStatusListener {
     }
 
     private void schedulePendingUpdates(RenderSection section) {
-        if ShadowRenderingState.areShadowsCurrentlyBeingRendered() || (section.getPendingUpdate() != null) {
+        if (ShadowRenderingState.areShadowsCurrentlyBeingRendered() || (section.getPendingUpdate() != null)) {
             if (!this.adjacencyMap.hasNeighbors(section.getChunkX(), section.getChunkZ())) {
                 return;
             }
 
             PriorityQueue<RenderSection> queue = this.rebuildQueues.get(section.getPendingUpdate());
+
+            if(queue == null) {
+                queue = new ObjectArrayFIFOQueue<>();
+            }
 
             if (queue.size() >= 32) {
                 return;

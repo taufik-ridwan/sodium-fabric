@@ -104,7 +104,7 @@ public abstract class MixinBufferBuilder implements VertexBufferView, VertexDrai
             } else if (factory == VanillaVertexTypes.QUADS) {
                 if (this.format == VertexFormats.POSITION_TEXTURE) {
                     return (T) new ModelQuadOverlayAdapter(VanillaVertexTypes.POSITION_TEXTURE.asBlittable()
-                            .createBufferWriter(this));
+                            .createBufferWriter(this, SodiumClientMod.isDirectMemoryAccessEnabled()));
                 }
             }
         }
