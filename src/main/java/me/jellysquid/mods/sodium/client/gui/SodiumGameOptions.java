@@ -53,6 +53,7 @@ public class SodiumGameOptions {
 
     public static class QualitySettings {
         public GraphicsQuality weatherQuality = GraphicsQuality.DEFAULT;
+        public int detailDistance = 0;
         public boolean enableVignette = true;
     }
 

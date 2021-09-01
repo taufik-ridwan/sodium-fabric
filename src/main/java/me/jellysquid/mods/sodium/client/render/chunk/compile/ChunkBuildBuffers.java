@@ -19,7 +19,9 @@ import net.coderbot.iris.shaderpack.IdMap;
 
 import net.minecraft.block.BlockState;
 import me.jellysquid.mods.sodium.client.util.NativeBuffer;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.RenderLayers;
 import net.minecraft.util.math.Vec3i;
 
 import java.util.Arrays;
@@ -143,6 +145,9 @@ public class ChunkBuildBuffers {
         return new ChunkMeshData(vertexData, ranges);
     }
 
+    public BlockRenderPass getRenderPass(RenderLayer layer) {
+        return this.renderPassManager.getRenderPassForLayer(layer);
+    }
     public void destroy() {
         for (VertexBufferBuilder builder : this.vertexBuffers) {
             builder.destroy();
@@ -155,5 +160,9 @@ public class ChunkBuildBuffers {
 
     public void resetMaterialId() {
         this.idHolder.reset();
+    }
+
+    public ChunkModelBuilder get(BlockRenderPass pass) {
+        return this.delegates[pass.ordinal()];
     }
 }

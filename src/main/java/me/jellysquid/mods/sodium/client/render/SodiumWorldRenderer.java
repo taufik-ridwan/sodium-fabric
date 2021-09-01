@@ -247,6 +247,22 @@ public class SodiumWorldRenderer implements ChunkStatusListener {
         this.renderSectionManager.renderLayer(matrixStack, pass, x, y, z);
 
         pass.endDrawing();
+
+        BlockRenderPass[] secondaryPasses = new BlockRenderPass[0];
+
+        if (renderLayer == RenderLayer.getCutoutMipped()) {
+            secondaryPasses = new BlockRenderPass[] { BlockRenderPass.DETAIL_CUTOUT_MIPPED };
+        } else if (renderLayer == RenderLayer.getCutout()) {
+            secondaryPasses = new BlockRenderPass[] { BlockRenderPass.DETAIL_CUTOUT };
+        }
+
+        for (BlockRenderPass secondaryPass : secondaryPasses) {
+            secondaryPass.startDrawing();
+
+            this.renderSectionManager.renderLayer(matrixStack, secondaryPass, x, y, z);
+
+            secondaryPass.endDrawing();
+        }
     }
 
     public void reload() {
@@ -358,7 +374,6 @@ public class SodiumWorldRenderer implements ChunkStatusListener {
         if (this.client.hasOutline(entity) || entity.shouldRenderName()) {
             return true;
         }
-
         return this.isBoxVisible(box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ);
     }
 
