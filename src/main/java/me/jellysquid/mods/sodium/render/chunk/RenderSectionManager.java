@@ -9,6 +9,7 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayFIFOQueue;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import it.unimi.dsi.fastutil.objects.ObjectList;
 import me.jellysquid.mods.sodium.SodiumClient;
+import me.jellysquid.mods.sodium.render.chunk.format.XHFPModelVertexType;
 import me.jellysquid.mods.thingl.device.CommandList;
 import me.jellysquid.mods.thingl.device.RenderDevice;
 import me.jellysquid.mods.sodium.render.SodiumWorldRenderer;
@@ -113,7 +114,7 @@ public class RenderSectionManager implements ChunkStatusListener {
         this.worldRenderer = worldRenderer;
         this.world = world;
 
-        this.builder = new ChunkBuilder(ModelVertexType.INSTANCE);
+        this.builder = new ChunkBuilder(XHFPModelVertexType.INSTANCE);
         this.builder.init(world, renderPassManager);
 
         this.needsUpdate = true;
@@ -129,7 +130,7 @@ public class RenderSectionManager implements ChunkStatusListener {
         float detailDistance = getDetailDistance(renderDistance);
 
         this.detailFarPlane = getDetailFarPlane(detailDistance);
-        this.chunkRenderer = new RegionChunkRenderer(RenderDevice.INSTANCE, ModelVertexType.INSTANCE, detailDistance);
+        this.chunkRenderer = new RegionChunkRenderer(RenderDevice.INSTANCE, XHFPModelVertexType.INSTANCE, detailDistance);
     }
 
     private static double getDetailFarPlane(float detailDistance) {

@@ -79,13 +79,22 @@ public class ChunkRenderRebuildTask extends ChunkRenderBuildTask {
                     blockPos.set(x, y, z);
 
                     if (blockState.getRenderType() == BlockRenderType.MODEL) {
+                        buffers.setMaterialId(blockState, (short) -1);
+
                         context.renderBlock(blockState, blockPos, this.detailLevel);
+
+                        buffers.resetMaterialId();
                     }
 
                     FluidState fluidState = blockState.getFluidState();
 
                     if (!fluidState.isEmpty()) {
+                        // All fluids have a ShadersMod render type of 1, to match behavior of Minecraft 1.7 and earlier.
+                        buffers.setMaterialId(fluidState.getBlockState(), (short) 1);
+
                         context.renderFluid(fluidState, blockPos);
+
+                        buffers.resetMaterialId();
                     }
 
                     if (blockState.hasBlockEntity()) {
