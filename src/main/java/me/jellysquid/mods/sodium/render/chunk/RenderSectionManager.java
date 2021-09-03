@@ -39,6 +39,9 @@ import me.jellysquid.mods.sodium.world.cloned.ChunkRenderContext;
 import me.jellysquid.mods.sodium.world.cloned.ClonedChunkSectionCache;
 import me.jellysquid.mods.sodium.util.DirectionUtil;
 import me.jellysquid.mods.sodium.util.collections.FutureQueueDrainingIterator;
+import net.coderbot.iris.Iris;
+import net.coderbot.iris.pipeline.ShadowRenderer;
+import net.coderbot.iris.shadows.ShadowRenderingState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.Camera;
@@ -82,11 +85,11 @@ public class RenderSectionManager implements ChunkStatusListener {
 
     private final ChunkAdjacencyMap adjacencyMap = new ChunkAdjacencyMap();
 
-    private final ChunkRenderList chunkRenderList = new ChunkRenderList();
+    private ChunkRenderList chunkRenderList = new ChunkRenderList();
     private final ChunkGraphIterationQueue iterationQueue = new ChunkGraphIterationQueue();
 
-    private final ObjectList<RenderSection> tickableChunks = new ObjectArrayList<>();
-    private final ObjectList<BlockEntity> visibleBlockEntities = new ObjectArrayList<>();
+    private ObjectList<RenderSection> tickableChunks = new ObjectArrayList<>();
+    private ObjectList<BlockEntity> visibleBlockEntities = new ObjectArrayList<>();
 
     private final RegionChunkRenderer chunkRenderer;
 
@@ -110,6 +113,11 @@ public class RenderSectionManager implements ChunkStatusListener {
     private int currentFrame = 0;
     private final double detailFarPlane;
 
+    private ChunkRenderList chunkRenderListSwap = new ChunkRenderList();
+    private ObjectList<RenderSection> tickableChunksSwap = new ObjectArrayList<>();
+    private ObjectList<BlockEntity> visibleBlockEntitiesSwap = new ObjectArrayList<>();
+    private boolean needsUpdateSwap;
+
     public RenderSectionManager(SodiumWorldRenderer worldRenderer, BlockRenderPassManager renderPassManager, ClientWorld world, int renderDistance, CommandList commandList) {
         this.worldRenderer = worldRenderer;
         this.world = world;
@@ -118,6 +126,7 @@ public class RenderSectionManager implements ChunkStatusListener {
         this.builder.init(world, renderPassManager);
 
         this.needsUpdate = true;
+        this.needsUpdateSwap = true;
         this.renderDistance = renderDistance;
 
         this.regions = new RenderRegionManager(commandList);
@@ -131,6 +140,24 @@ public class RenderSectionManager implements ChunkStatusListener {
 
         this.detailFarPlane = getDetailFarPlane(detailDistance);
         this.chunkRenderer = new RegionChunkRenderer(RenderDevice.INSTANCE, XHFPModelVertexType.INSTANCE, detailDistance);
+    }
+
+    public void swapState() {
+        ChunkRenderList chunkRenderListTmp = chunkRenderList;
+        chunkRenderList = chunkRenderListSwap;
+        chunkRenderListSwap = chunkRenderListTmp;
+
+        ObjectList<RenderSection> tickableChunksTmp = tickableChunks;
+        tickableChunks = tickableChunksSwap;
+        tickableChunksSwap = tickableChunksTmp;
+
+        ObjectList<BlockEntity> visibleBlockEntitiesTmp = visibleBlockEntities;
+        visibleBlockEntities = visibleBlockEntitiesSwap;
+        visibleBlockEntitiesSwap = visibleBlockEntitiesTmp;
+
+        boolean needsUpdateTmp = needsUpdate;
+        needsUpdate = needsUpdateSwap;
+        needsUpdateSwap = needsUpdateTmp;
     }
 
     private static double getDetailFarPlane(float detailDistance) {
@@ -158,6 +185,10 @@ public class RenderSectionManager implements ChunkStatusListener {
         this.iterateChunks(camera, frustum, frame, spectator);
 
         this.needsUpdate = false;
+
+        if(ShadowRenderingState.areShadowsCurrentlyBeingRendered()) {
+            ShadowRenderer.visibleBlockEntities = visibleBlockEntities;
+        }
     }
 
     private void setup(Camera camera) {
@@ -169,7 +200,7 @@ public class RenderSectionManager implements ChunkStatusListener {
 
         this.useFogCulling = false;
 
-        if (SodiumClient.options().advanced.useFogOcclusion) {
+        if (SodiumClient.options().advanced.useFogOcclusion && !Iris.getCurrentPack().isPresent()) {
             float dist = RenderSystem.getShaderFogEnd() + FOG_PLANE_OFFSET;
 
             if (dist != 0.0f) {
@@ -205,12 +236,16 @@ public class RenderSectionManager implements ChunkStatusListener {
     }
 
     private void schedulePendingUpdates(RenderSection section) {
-        if (section.getPendingUpdate() != null) {
+        if (ShadowRenderingState.areShadowsCurrentlyBeingRendered() || section.getPendingUpdate() != null) {
             if (!this.adjacencyMap.hasNeighbors(section.getChunkX(), section.getChunkZ())) {
                 return;
             }
 
             PriorityQueue<RenderSection> queue = this.rebuildQueues.get(section.getPendingUpdate());
+
+            if (queue == null) {
+                queue = new ObjectArrayFIFOQueue<>();
+            }
 
             if (queue.size() >= 32) {
                 return;
@@ -243,8 +278,10 @@ public class RenderSectionManager implements ChunkStatusListener {
     }
 
     private void resetLists() {
-        for (PriorityQueue<RenderSection> queue : this.rebuildQueues.values()) {
-            queue.clear();
+        if (!ShadowRenderingState.areShadowsCurrentlyBeingRendered()) {
+            for (PriorityQueue<RenderSection> queue : this.rebuildQueues.values()) {
+                queue.clear();
+            }
         }
 
         this.visibleBlockEntities.clear();
@@ -261,7 +298,9 @@ public class RenderSectionManager implements ChunkStatusListener {
         this.adjacencyMap.onChunkLoaded(x, z);
 
         for (int y = this.world.getBottomSectionCoord(); y < this.world.getTopSectionCoord(); y++) {
-            this.needsUpdate |= this.loadSection(x, y, z);
+            boolean dirty = this.loadSection(x, y, z);
+            this.needsUpdate |= dirty;
+            this.needsUpdateSwap |= dirty;
         }
     }
 
@@ -270,7 +309,9 @@ public class RenderSectionManager implements ChunkStatusListener {
         this.adjacencyMap.onChunkUnloaded(x, z);
 
         for (int y = this.world.getBottomSectionCoord(); y < this.world.getTopSectionCoord(); y++) {
-            this.needsUpdate |= this.unloadSection(x, y, z);
+            boolean dirty = this.unloadSection(x, y, z);
+            this.needsUpdate |= dirty;
+            this.needsUpdateSwap |= dirty;
         }
     }
 
