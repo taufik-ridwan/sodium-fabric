@@ -57,7 +57,8 @@ public class GlProgram<T> extends GlObject implements ShaderBindingContext {
         int index = GL20C.glGetUniformLocation(this.handle(), name);
 
         if (index < 0) {
-            SodiumClientMod.logger().warn("No uniform exists with name: " + name);
+            // Iris: disable missing uniform warning to account for shaders not needing certain uniforms
+            // SodiumClientMod.logger().warn("No uniform exists with name: " + name);
         }
 
         return factory.apply(index);
