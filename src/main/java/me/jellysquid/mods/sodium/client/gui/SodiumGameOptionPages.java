@@ -43,10 +43,8 @@ public class SodiumGameOptionPages {
                         .setFlags(OptionFlag.REQUIRES_RENDERER_RELOAD)
                         .build())
                 .add(OptionImpl.createBuilder(int.class, vanillaOpts)
-                        .setName(new LiteralText("Max Shadow Distance"))
-                        .setTooltip(new LiteralText("The shadow render distance controls how far away terrain can potentially be rendered in the shadow pass. Lower distances mean that less terrain will be " +
-                                "rendered, improving frame rates. This option cannot be changed on packs which explicitly specify a shadow render distance. The actual shadow render distance is capped by the " +
-                                "View Distance setting."))
+                        .setName(new TranslatableText("options.iris.shadowDistance"))
+                        .setTooltip(new TranslatableText("options.iris.shadowDistance.sodium_tooltip"))
                         .setControl(option -> new SliderControl(option, 0, 32, 1, ControlValueFormatter.quantity("Chunks")))
                         .setBinding((options, value) -> IrisVideoSettings.shadowDistance = value,
                                 options -> IrisVideoSettings.getOverriddenShadowDistance(IrisVideoSettings.shadowDistance))
