@@ -172,10 +172,12 @@ public class SodiumGameOptions {
         // Atomically replace the old config file (if it exists) with the temporary file
         Files.move(tempPath, this.configPath, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
 
-        try {
-            Iris.getIrisConfig().save();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (Iris.getIrisConfig() != null) {
+            try {
+                Iris.getIrisConfig().save();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
