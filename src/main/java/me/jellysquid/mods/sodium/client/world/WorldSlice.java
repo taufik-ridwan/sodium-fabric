@@ -326,7 +326,7 @@ public class WorldSlice implements BlockRenderView, BiomeAccess.Storage, RenderA
         int relZ = z - this.baseZ;
 
         return this.biomeCaches[getLocalSectionIndex(relX >> 4, relY >> 4, relZ >> 4)]
-                .getBiome(this, x, relY >> 4, z);
+                .getBiome(this, x, y, z);
     }
 
     public ChunkSectionPos getOrigin() {
