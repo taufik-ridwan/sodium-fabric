@@ -13,6 +13,7 @@ import me.jellysquid.mods.sodium.client.gui.options.control.TickBoxControl;
 import me.jellysquid.mods.sodium.client.gui.options.storage.MinecraftOptionsStorage;
 import me.jellysquid.mods.sodium.client.gui.options.storage.SodiumOptionsStorage;
 import net.coderbot.iris.Iris;
+import net.coderbot.iris.gui.option.IrisVideoSettings;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.Framebuffer;
 import net.minecraft.client.option.Option;
@@ -40,6 +41,15 @@ public class SodiumGameOptionPages {
                         .setBinding((options, value) -> options.viewDistance = value, options -> options.viewDistance)
                         .setImpact(OptionImpact.HIGH)
                         .setFlags(OptionFlag.REQUIRES_RENDERER_RELOAD)
+                        .build())
+                .add(OptionImpl.createBuilder(int.class, vanillaOpts)
+                        .setName(new TranslatableText("options.iris.shadowDistance"))
+                        .setTooltip(new TranslatableText("options.iris.shadowDistance.sodium_tooltip"))
+                        .setControl(option -> new SliderControl(option, 0, 32, 1, ControlValueFormatter.quantity("Chunks")))
+                        .setBinding((options, value) -> IrisVideoSettings.shadowDistance = value,
+                                options -> IrisVideoSettings.getOverriddenShadowDistance(IrisVideoSettings.shadowDistance))
+                        .setImpact(OptionImpact.HIGH)
+                        .setEnabled(IrisVideoSettings::isShadowDistanceSliderEnabled)
                         .build())
                 .add(OptionImpl.createBuilder(int.class, vanillaOpts)
                         .setName(new TranslatableText("options.gamma"))

@@ -4,6 +4,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import me.jellysquid.mods.sodium.client.gui.options.TextProvider;
+import net.coderbot.iris.Iris;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.option.GraphicsMode;
 import net.minecraft.text.LiteralText;
@@ -170,6 +171,14 @@ public class SodiumGameOptions {
 
         // Atomically replace the old config file (if it exists) with the temporary file
         Files.move(tempPath, this.configPath, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
+
+        if (Iris.getIrisConfig() != null) {
+            try {
+                Iris.getIrisConfig().save();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public boolean isReadOnly() {
