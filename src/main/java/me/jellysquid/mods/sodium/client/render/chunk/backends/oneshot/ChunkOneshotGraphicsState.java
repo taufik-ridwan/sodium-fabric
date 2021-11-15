@@ -17,6 +17,7 @@ import me.jellysquid.mods.sodium.client.render.chunk.ChunkRenderContainer;
 import me.jellysquid.mods.sodium.client.render.chunk.data.ChunkMeshData;
 import me.jellysquid.mods.sodium.client.render.chunk.format.ChunkMeshAttribute;
 import me.jellysquid.mods.sodium.client.render.chunk.shader.ChunkShaderBindingPoints;
+import net.coderbot.iris.sodiumglue.IrisChunkShaderBindingPoints;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -77,10 +78,10 @@ public class ChunkOneshotGraphicsState extends ChunkGraphicsState {
                         new GlVertexAttributeBinding(ChunkShaderBindingPoints.COLOR, vertexFormat.getAttribute(ChunkMeshAttribute.COLOR)),
                         new GlVertexAttributeBinding(ChunkShaderBindingPoints.TEX_COORD, vertexFormat.getAttribute(ChunkMeshAttribute.TEXTURE)),
                         new GlVertexAttributeBinding(ChunkShaderBindingPoints.LIGHT_COORD, vertexFormat.getAttribute(ChunkMeshAttribute.LIGHT)),
-                        new GlVertexAttributeBinding(ChunkShaderBindingPoints.BLOCK_ID, vertexFormat.getAttribute(ChunkMeshAttribute.BLOCK_ID)),
-                        new GlVertexAttributeBinding(ChunkShaderBindingPoints.MID_TEX_COORD, vertexFormat.getAttribute(ChunkMeshAttribute.MID_TEX_COORD)),
-                        new GlVertexAttributeBinding(ChunkShaderBindingPoints.TANGENT, vertexFormat.getAttribute(ChunkMeshAttribute.TANGENT)),
-                        new GlVertexAttributeBinding(ChunkShaderBindingPoints.NORMAL, vertexFormat.getAttribute(ChunkMeshAttribute.NORMAL))
+                        new GlVertexAttributeBinding(IrisChunkShaderBindingPoints.BLOCK_ID, vertexFormat.getAttribute(ChunkMeshAttribute.BLOCK_ID)),
+                        new GlVertexAttributeBinding(IrisChunkShaderBindingPoints.MID_TEX_COORD, vertexFormat.getAttribute(ChunkMeshAttribute.MID_TEX_COORD)),
+                        new GlVertexAttributeBinding(IrisChunkShaderBindingPoints.TANGENT, vertexFormat.getAttribute(ChunkMeshAttribute.TANGENT)),
+                        new GlVertexAttributeBinding(IrisChunkShaderBindingPoints.NORMAL, vertexFormat.getAttribute(ChunkMeshAttribute.NORMAL))
                 }, false)
         });
 

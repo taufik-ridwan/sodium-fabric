@@ -30,6 +30,7 @@ import me.jellysquid.mods.sodium.client.render.chunk.region.ChunkRegion;
 import me.jellysquid.mods.sodium.client.render.chunk.region.ChunkRegionManager;
 import me.jellysquid.mods.sodium.client.render.chunk.shader.ChunkRenderShaderBackend;
 import me.jellysquid.mods.sodium.client.render.chunk.shader.ChunkShaderBindingPoints;
+import net.coderbot.iris.sodiumglue.IrisChunkShaderBindingPoints;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Util;
 import org.lwjgl.opengl.GL20C;
@@ -179,10 +180,10 @@ public class MultidrawChunkRenderBackend extends ChunkRenderShaderBackend<Multid
                                 this.vertexFormat.getAttribute(ChunkMeshAttribute.TEXTURE)),
                         new GlVertexAttributeBinding(ChunkShaderBindingPoints.LIGHT_COORD,
                                 this.vertexFormat.getAttribute(ChunkMeshAttribute.LIGHT)),
-                        new GlVertexAttributeBinding(ChunkShaderBindingPoints.BLOCK_ID, vertexFormat.getAttribute(ChunkMeshAttribute.BLOCK_ID)),
-                        new GlVertexAttributeBinding(ChunkShaderBindingPoints.MID_TEX_COORD, vertexFormat.getAttribute(ChunkMeshAttribute.MID_TEX_COORD)),
-                        new GlVertexAttributeBinding(ChunkShaderBindingPoints.TANGENT, vertexFormat.getAttribute(ChunkMeshAttribute.TANGENT)),
-                        new GlVertexAttributeBinding(ChunkShaderBindingPoints.NORMAL, vertexFormat.getAttribute(ChunkMeshAttribute.NORMAL))
+                        new GlVertexAttributeBinding(IrisChunkShaderBindingPoints.BLOCK_ID, vertexFormat.getAttribute(ChunkMeshAttribute.BLOCK_ID)),
+                        new GlVertexAttributeBinding(IrisChunkShaderBindingPoints.MID_TEX_COORD, vertexFormat.getAttribute(ChunkMeshAttribute.MID_TEX_COORD)),
+                        new GlVertexAttributeBinding(IrisChunkShaderBindingPoints.TANGENT, vertexFormat.getAttribute(ChunkMeshAttribute.TANGENT)),
+                        new GlVertexAttributeBinding(IrisChunkShaderBindingPoints.NORMAL, vertexFormat.getAttribute(ChunkMeshAttribute.NORMAL))
                 }, false),
                 new TessellationBinding(this.uniformBuffer, new GlVertexAttributeBinding[] {
                         new GlVertexAttributeBinding(ChunkShaderBindingPoints.MODEL_OFFSET,

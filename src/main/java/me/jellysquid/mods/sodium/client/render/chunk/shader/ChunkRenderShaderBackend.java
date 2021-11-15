@@ -17,6 +17,7 @@ import net.coderbot.iris.gl.program.ProgramUniforms;
 import net.coderbot.iris.pipeline.SodiumTerrainPipeline;
 import net.coderbot.iris.pipeline.WorldRenderingPipeline;
 import net.coderbot.iris.shadows.ShadowRenderingState;
+import net.coderbot.iris.sodiumglue.IrisChunkShaderBindingPoints;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
@@ -118,10 +119,10 @@ public abstract class ChunkRenderShaderBackend<T extends ChunkGraphicsState>
                     .bindAttribute("a_Color", ChunkShaderBindingPoints.COLOR)
                     .bindAttribute("a_TexCoord", ChunkShaderBindingPoints.TEX_COORD)
                     .bindAttribute("a_LightCoord", ChunkShaderBindingPoints.LIGHT_COORD)
-                    .bindAttribute("mc_Entity", ChunkShaderBindingPoints.BLOCK_ID)
-                    .bindAttribute("mc_midTexCoord", ChunkShaderBindingPoints.MID_TEX_COORD)
-                    .bindAttribute("at_tangent", ChunkShaderBindingPoints.TANGENT)
-                    .bindAttribute("a_Normal", ChunkShaderBindingPoints.NORMAL)
+                    .bindAttribute("mc_Entity", IrisChunkShaderBindingPoints.BLOCK_ID)
+                    .bindAttribute("mc_midTexCoord", IrisChunkShaderBindingPoints.MID_TEX_COORD)
+                    .bindAttribute("at_tangent", IrisChunkShaderBindingPoints.TANGENT)
+                    .bindAttribute("a_Normal", IrisChunkShaderBindingPoints.NORMAL)
                     .bindAttribute("d_ModelOffset", ChunkShaderBindingPoints.MODEL_OFFSET)
                     .build((program, name) -> {
                         ProgramUniforms uniforms = null;
