@@ -6,7 +6,6 @@ import me.jellysquid.mods.sodium.client.model.light.data.QuadLightData;
 import me.jellysquid.mods.sodium.client.model.quad.ModelQuadView;
 import me.jellysquid.mods.sodium.client.model.quad.properties.ModelQuadFlags;
 
-import net.coderbot.iris.block_rendering.BlockRenderingSettings;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 
@@ -35,12 +34,6 @@ public class FlatLightPipeline implements LightPipeline {
             Arrays.fill(out.lm, unpackLM(this.lightCache.get(pos, face)));
         } else {
             Arrays.fill(out.lm, unpackLM(this.lightCache.get(pos)));
-        }
-
-        if (BlockRenderingSettings.INSTANCE.shouldDisableDirectionalShading()) {
-            Arrays.fill(out.br, 1.0F);
-
-            return;
         }
 
         Arrays.fill(out.br, this.lightCache.getWorld().getBrightness(face, shade));
