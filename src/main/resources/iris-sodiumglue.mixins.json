@@ -12,6 +12,7 @@
     "MixinChunkBuildBuffers",
     "MixinChunkRenderRebuildTask",
     "MixinFlatLightPipeline",
+    "MixinGameRendererContext",
     "MixinSmoothLightPipeline"
   ]
 }
