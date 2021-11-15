@@ -106,9 +106,13 @@ public abstract class ChunkRenderShaderBackend<T extends ChunkGraphicsState>
         GlShader fragShader = createFragmentShader(device, fogMode, pass, shadow, pipeline);
 
         try {
-            return GlProgram.builder(new Identifier("sodium", "chunk_shader_for_" + pass.toString().toLowerCase(Locale.ROOT) + (shadow ? "_gbuffer" : "_shadow")))
-                    .attachShader(vertShader)
-                    .attachShader(geomShader)
+            GlProgram.Builder builder = GlProgram.builder(new Identifier("sodium", "chunk_shader_for_" + pass.toString().toLowerCase(Locale.ROOT) + (shadow ? "_gbuffer" : "_shadow")));
+
+            if (geomShader != null) {
+                builder.attachShader(geomShader);
+            }
+
+            return builder.attachShader(vertShader)
                     .attachShader(fragShader)
                     .bindAttribute("a_Pos", ChunkShaderBindingPoints.POSITION)
                     .bindAttribute("a_Color", ChunkShaderBindingPoints.COLOR)
