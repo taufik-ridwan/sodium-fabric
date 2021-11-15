@@ -16,7 +16,7 @@ public class MixinGameRendererContext {
     @Redirect(method = "getModelViewProjectionMatrix",
             at = @At(value = "INVOKE",
                     target = "net/minecraft/util/math/Matrix4f.copy ()Lnet/minecraft/util/math/Matrix4f;"))
-    private Matrix4f iris$useShadowProjectionMatrix(Matrix4f matrix) {
+    private static Matrix4f iris$useShadowProjectionMatrix(Matrix4f matrix) {
         if (ShadowRenderingState.areShadowsCurrentlyBeingRendered()) {
             return ShadowRenderingState.getShadowOrthoMatrix();
         } else {
