@@ -9,6 +9,8 @@
     "conformVisibility": true
   },
   "client": [
+    "separate_ao.MixinBlockRenderer",
+    "separate_ao.MixinFluidRenderer",
     "MixinChunkBuildBuffers",
     "MixinChunkRenderRebuildTask",
     "MixinFlatLightPipeline",
