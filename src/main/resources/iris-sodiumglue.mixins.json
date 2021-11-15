@@ -1,0 +1,14 @@
+{
+  "package": "net.coderbot.iris.sodiumglue.mixin",
+  "required": true,
+  "compatibilityLevel": "JAVA_8",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "conformVisibility": true
+  },
+  "client": [
+    "MixinChunkBuildBuffers"
+  ]
+}

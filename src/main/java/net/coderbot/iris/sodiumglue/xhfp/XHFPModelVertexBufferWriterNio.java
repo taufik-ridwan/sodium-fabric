@@ -10,15 +10,14 @@ import me.jellysquid.mods.sodium.client.render.chunk.format.ModelVertexUtil;
 import me.jellysquid.mods.sodium.client.util.Norm3b;
 
 import net.coderbot.iris.sodiumglue.IrisModelVertexFormats;
+import net.coderbot.iris.sodiumglue.duck.MaterialIdAwareVertexWriter;
 import net.minecraft.client.util.math.Vector3f;
 
-public class XHFPModelVertexBufferWriterNio extends VertexBufferWriterNio implements ModelVertexSink {
+public class XHFPModelVertexBufferWriterNio extends VertexBufferWriterNio implements ModelVertexSink, MaterialIdAwareVertexWriter {
     private MaterialIdHolder idHolder;
 
-    public XHFPModelVertexBufferWriterNio(VertexBufferView backingBuffer, MaterialIdHolder idHolder) {
+    public XHFPModelVertexBufferWriterNio(VertexBufferView backingBuffer) {
         super(backingBuffer, IrisModelVertexFormats.MODEL_VERTEX_XHFP);
-
-        this.idHolder = idHolder;
     }
 
     private static final int STRIDE = 48;
@@ -221,5 +220,10 @@ public class XHFPModelVertexBufferWriterNio extends VertexBufferWriterNio implem
         } else {
             return (float) (1.0 / Math.sqrt(value));
         }
+    }
+
+    @Override
+    public void iris$setIdHolder(MaterialIdHolder holder) {
+        this.idHolder = holder;
     }
 }
