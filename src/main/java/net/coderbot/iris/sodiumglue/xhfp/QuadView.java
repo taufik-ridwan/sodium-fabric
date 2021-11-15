@@ -1,4 +1,4 @@
-package me.jellysquid.mods.sodium.client.render.chunk.format.xhfp;
+package net.coderbot.iris.sodiumglue.xhfp;
 
 import java.nio.ByteBuffer;
 

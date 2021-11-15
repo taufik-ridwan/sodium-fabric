@@ -23,6 +23,7 @@ import me.jellysquid.mods.sodium.client.world.ChunkStatusListener;
 import me.jellysquid.mods.sodium.client.world.ChunkStatusListenerManager;
 import me.jellysquid.mods.sodium.common.util.ListUtil;
 import net.coderbot.iris.shadows.ShadowRenderingState;
+import net.coderbot.iris.sodiumglue.IrisModelVertexFormats;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -287,14 +288,16 @@ public class SodiumWorldRenderer implements ChunkStatusListener {
 
         final ChunkVertexType vertexFormat;
 
-        /*if (opts.advanced.useCompactVertexFormat) {
+        // Iris start: use extended vertex format
+        /*
+        if (opts.advanced.useCompactVertexFormat) {
             vertexFormat = DefaultModelVertexFormats.MODEL_VERTEX_HFP;
         } else {
             vertexFormat = DefaultModelVertexFormats.MODEL_VERTEX_SFP;
-        }*/
-
-        // override it all
-        vertexFormat = DefaultModelVertexFormats.MODEL_VERTEX_XHFP;
+        }
+        */
+        vertexFormat = IrisModelVertexFormats.MODEL_VERTEX_XHFP;
+        // Iris end
 
         this.chunkRenderBackend = createChunkRenderBackend(device, opts, vertexFormat);
         this.chunkRenderBackend.createShaders(device);

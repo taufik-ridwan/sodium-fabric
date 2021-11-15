@@ -1,4 +1,4 @@
-package me.jellysquid.mods.sodium.client.render.chunk.format.xhfp;
+package net.coderbot.iris.sodiumglue.xhfp;
 
 /*
  * Copyright (c) 2016, 2017, 2018, 2019 FabricMC
@@ -19,9 +19,7 @@ package me.jellysquid.mods.sodium.client.render.chunk.format.xhfp;
 import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.client.util.math.Vector3f;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3i;
 
 /**
  * Static routines of general utility for renderer implementations.

@@ -1,4 +1,4 @@
-package me.jellysquid.mods.sodium.client.render.chunk.format.xhfp;
+package net.coderbot.iris.sodiumglue.xhfp;
 
 import me.jellysquid.mods.sodium.client.gl.attribute.GlVertexAttributeFormat;
 import me.jellysquid.mods.sodium.client.gl.attribute.GlVertexFormat;
