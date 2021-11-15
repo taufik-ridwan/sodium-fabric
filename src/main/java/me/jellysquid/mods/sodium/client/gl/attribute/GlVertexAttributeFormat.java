@@ -9,12 +9,12 @@ public class GlVertexAttributeFormat {
     public static final GlVertexAttributeFormat FLOAT = new GlVertexAttributeFormat(GL20C.GL_FLOAT, 4);
     public static final GlVertexAttributeFormat UNSIGNED_SHORT = new GlVertexAttributeFormat(GL20C.GL_UNSIGNED_SHORT, 2);
     public static final GlVertexAttributeFormat UNSIGNED_BYTE = new GlVertexAttributeFormat(GL20C.GL_UNSIGNED_BYTE, 1);
-    public static final GlVertexAttributeFormat BYTE = new GlVertexAttributeFormat(GL20C.GL_BYTE, 1);
 
     private final int glId;
     private final int size;
 
-    private GlVertexAttributeFormat(int glId, int size) {
+    // Iris: make constructor public
+    public GlVertexAttributeFormat(int glId, int size) {
         this.glId = glId;
         this.size = size;
     }
