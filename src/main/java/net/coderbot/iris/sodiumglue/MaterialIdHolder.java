@@ -1,4 +1,4 @@
-package me.jellysquid.mods.sodium.client.render.chunk.format;
+package net.coderbot.iris.sodiumglue;
 
 import java.util.Map;
 
@@ -7,7 +7,7 @@ import it.unimi.dsi.fastutil.objects.Object2IntMaps;
 import net.minecraft.block.BlockState;
 
 public class MaterialIdHolder {
-    private Map<BlockState, Integer> idMap;
+    private final Map<BlockState, Integer> idMap;
     public short id;
     public short renderType;
 
