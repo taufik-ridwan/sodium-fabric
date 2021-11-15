@@ -11,12 +11,9 @@ import me.jellysquid.mods.sodium.client.render.chunk.compile.buffers.ChunkModelV
 import me.jellysquid.mods.sodium.client.render.chunk.data.ChunkMeshData;
 import me.jellysquid.mods.sodium.client.render.chunk.data.ChunkRenderData;
 import me.jellysquid.mods.sodium.client.render.chunk.format.ChunkModelOffset;
-import net.coderbot.iris.sodiumglue.MaterialIdHolder;
 import me.jellysquid.mods.sodium.client.render.chunk.passes.BlockRenderPass;
 import me.jellysquid.mods.sodium.client.render.chunk.passes.BlockRenderPassManager;
 import me.jellysquid.mods.sodium.client.util.UnsafeUtil;
-import net.coderbot.iris.block_rendering.BlockRenderingSettings;
-import net.coderbot.iris.shaderpack.IdMap;
 
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.util.GlAllocationUtils;

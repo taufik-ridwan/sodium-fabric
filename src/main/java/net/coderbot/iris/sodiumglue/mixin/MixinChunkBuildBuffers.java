@@ -2,10 +2,8 @@ package net.coderbot.iris.sodiumglue.mixin;
 
 import me.jellysquid.mods.sodium.client.model.vertex.VertexSink;
 import me.jellysquid.mods.sodium.client.model.vertex.buffer.VertexBufferView;
-import me.jellysquid.mods.sodium.client.model.vertex.type.BlittableVertexType;
 import me.jellysquid.mods.sodium.client.model.vertex.type.ChunkVertexType;
 import me.jellysquid.mods.sodium.client.render.chunk.compile.ChunkBuildBuffers;
-import me.jellysquid.mods.sodium.client.render.chunk.format.ModelVertexSink;
 import me.jellysquid.mods.sodium.client.render.chunk.passes.BlockRenderPassManager;
 import net.coderbot.iris.block_rendering.BlockRenderingSettings;
 import net.coderbot.iris.shaderpack.IdMap;
@@ -21,7 +19,8 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
- * Associates the material ID holder
+ * Associates the material ID holder with the chunk build buffers, allowing {@link MixinChunkRenderRebuildTask} to pass
+ * data to {@link MaterialIdAwareVertexWriter}.
  */
 @Mixin(ChunkBuildBuffers.class)
 public class MixinChunkBuildBuffers implements ChunkBuildBuffersExt {

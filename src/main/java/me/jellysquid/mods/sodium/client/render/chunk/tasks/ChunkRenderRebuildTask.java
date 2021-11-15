@@ -12,7 +12,6 @@ import me.jellysquid.mods.sodium.client.render.pipeline.context.ChunkRenderCache
 import me.jellysquid.mods.sodium.client.util.task.CancellationSource;
 import me.jellysquid.mods.sodium.client.world.WorldSlice;
 import me.jellysquid.mods.sodium.client.world.cloned.ChunkRenderContext;
-import net.coderbot.iris.sodiumglue.duck.ChunkBuildBuffersExt;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -81,12 +80,6 @@ public class ChunkRenderRebuildTask<T extends ChunkGraphicsState> extends ChunkR
                     buffers.setRenderOffset(pos.getX() - renderOffset.getX(), pos.getY() - renderOffset.getY(), pos.getZ() - renderOffset.getZ());
 
                     if (blockState.getRenderType() == BlockRenderType.MODEL) {
-                        // Iris start: Block ID tracking
-                        if (buffers instanceof ChunkBuildBuffersExt) {
-                            ((ChunkBuildBuffersExt) buffers).iris$setMaterialId(blockState, (short) -1);
-                        }
-                        // Iris end
-
                         RenderLayer layer = RenderLayers.getBlockLayer(blockState);
 
                         BakedModel model = cache.getBlockModels()
@@ -97,35 +90,16 @@ public class ChunkRenderRebuildTask<T extends ChunkGraphicsState> extends ChunkR
                         if (cache.getBlockRenderer().renderModel(slice, blockState, pos, model, buffers.get(layer), true, seed)) {
                             bounds.addBlock(relX, relY, relZ);
                         }
-
-                        // Iris start: Block ID tracking
-                        if (buffers instanceof ChunkBuildBuffersExt) {
-                            ((ChunkBuildBuffersExt) buffers).iris$resetMaterialId();
-                        }
-                        // Iris end
                     }
 
                     FluidState fluidState = blockState.getFluidState();
 
                     if (!fluidState.isEmpty()) {
-                        // Iris start: Block ID tracking
-                        if (buffers instanceof ChunkBuildBuffersExt) {
-                            // All fluids have a ShadersMod render type of 1, to match behavior of Minecraft 1.7 and earlier.
-                            ((ChunkBuildBuffersExt) buffers).iris$setMaterialId(fluidState.getBlockState(), (short) 1);
-                        }
-                        // Iris end
-
                         RenderLayer layer = RenderLayers.getFluidLayer(fluidState);
 
                         if (cache.getFluidRenderer().render(slice, fluidState, pos, buffers.get(layer))) {
                             bounds.addBlock(relX, relY, relZ);
                         }
-
-                        // Iris start: Block ID tracking
-                        if (buffers instanceof ChunkBuildBuffersExt) {
-                            ((ChunkBuildBuffersExt) buffers).iris$resetMaterialId();
-                        }
-                        // Iris end
                     }
 
                     if (blockState.getBlock().hasBlockEntity()) {
