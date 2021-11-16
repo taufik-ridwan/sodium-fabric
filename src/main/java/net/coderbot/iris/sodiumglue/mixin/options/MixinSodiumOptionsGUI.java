@@ -41,7 +41,7 @@ public class MixinSodiumOptionsGUI extends Screen {
         pages.add(shaderPacks);
     }
 
-    @Inject(method = "setPage", at = @At("HEAD"), remap = false)
+    @Inject(method = "setPage", at = @At("HEAD"), remap = false, cancellable = true)
     private void iris$onSetPage(OptionPage page, CallbackInfo ci) {
         if (page == shaderPacks) {
             client.openScreen(new ShaderPackScreen(this));
