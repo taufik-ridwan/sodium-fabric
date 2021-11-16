@@ -1,4 +1,4 @@
-package net.coderbot.iris.sodiumglue.duck;
+package net.coderbot.iris.sodiumglue.impl.block_id;
 
 import net.minecraft.block.BlockState;
 

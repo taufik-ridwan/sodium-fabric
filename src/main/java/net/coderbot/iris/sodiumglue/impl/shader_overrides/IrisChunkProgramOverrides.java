@@ -1,4 +1,4 @@
-package net.coderbot.iris.sodiumglue.backend;
+package net.coderbot.iris.sodiumglue.impl.shader_overrides;
 
 import me.jellysquid.mods.sodium.client.gl.device.RenderDevice;
 import me.jellysquid.mods.sodium.client.gl.shader.GlProgram;

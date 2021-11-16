@@ -1,4 +1,4 @@
-package net.coderbot.iris.sodiumglue;
+package net.coderbot.iris.sodiumglue.impl.block_id;
 
 import java.util.Map;
 

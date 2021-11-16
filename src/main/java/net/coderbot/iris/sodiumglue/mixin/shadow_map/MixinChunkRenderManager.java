@@ -12,7 +12,7 @@ import me.jellysquid.mods.sodium.client.render.chunk.lists.ChunkRenderList;
 import me.jellysquid.mods.sodium.client.render.chunk.passes.BlockRenderPass;
 import me.jellysquid.mods.sodium.client.render.chunk.passes.BlockRenderPassManager;
 import net.coderbot.iris.shadows.ShadowRenderingState;
-import net.coderbot.iris.sodiumglue.duck.SwappableChunkRenderManager;
+import net.coderbot.iris.sodiumglue.impl.shadow_map.SwappableChunkRenderManager;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.world.ClientWorld;
 import org.spongepowered.asm.mixin.*;

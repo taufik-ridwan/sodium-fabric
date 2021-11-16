@@ -1,4 +1,4 @@
-package net.coderbot.iris.sodiumglue.backend;
+package net.coderbot.iris.sodiumglue.impl.shader_overrides;
 
 public enum IrisTerrainPass {
     SHADOW("shadow"),

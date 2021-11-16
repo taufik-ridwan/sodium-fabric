@@ -3,7 +3,7 @@ package net.coderbot.iris.sodiumglue.mixin.shadow_map;
 import me.jellysquid.mods.sodium.client.render.SodiumWorldRenderer;
 import me.jellysquid.mods.sodium.client.render.chunk.ChunkRenderManager;
 import net.coderbot.iris.shadows.ShadowRenderingState;
-import net.coderbot.iris.sodiumglue.duck.SwappableChunkRenderManager;
+import net.coderbot.iris.sodiumglue.impl.shadow_map.SwappableChunkRenderManager;
 import net.minecraft.client.render.Camera;
 import net.minecraft.client.render.Frustum;
 import net.minecraft.client.render.RenderLayer;
