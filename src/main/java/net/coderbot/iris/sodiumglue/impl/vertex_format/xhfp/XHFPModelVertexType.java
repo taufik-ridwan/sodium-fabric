@@ -8,6 +8,7 @@ import me.jellysquid.mods.sodium.client.model.vertex.type.ChunkVertexType;
 import me.jellysquid.mods.sodium.client.render.chunk.format.ChunkMeshAttribute;
 import me.jellysquid.mods.sodium.client.render.chunk.format.ModelVertexSink;
 
+import net.coderbot.iris.sodiumglue.impl.vertex_format.IrisChunkMeshAttributes;
 import net.coderbot.iris.sodiumglue.impl.vertex_format.IrisGlVertexAttributeFormat;
 import net.minecraft.client.render.VertexConsumer;
 
@@ -20,11 +21,11 @@ public class XHFPModelVertexType implements ChunkVertexType {
             .addElement(ChunkMeshAttribute.COLOR, 8, GlVertexAttributeFormat.UNSIGNED_BYTE, 4, true)
             .addElement(ChunkMeshAttribute.TEXTURE, 12, GlVertexAttributeFormat.UNSIGNED_SHORT, 2, false)
             .addElement(ChunkMeshAttribute.LIGHT, 16, GlVertexAttributeFormat.UNSIGNED_SHORT, 2, true)
-            .addElement(ChunkMeshAttribute.MID_TEX_COORD, 20, GlVertexAttributeFormat.UNSIGNED_SHORT, 2, true)
-            .addElement(ChunkMeshAttribute.TANGENT, 24, IrisGlVertexAttributeFormat.BYTE, 4, true)
-            .addElement(ChunkMeshAttribute.NORMAL, 28, IrisGlVertexAttributeFormat.BYTE, 3, true)
+            .addElement(IrisChunkMeshAttributes.MID_TEX_COORD, 20, GlVertexAttributeFormat.UNSIGNED_SHORT, 2, true)
+            .addElement(IrisChunkMeshAttributes.TANGENT, 24, IrisGlVertexAttributeFormat.BYTE, 4, true)
+            .addElement(IrisChunkMeshAttributes.NORMAL, 28, IrisGlVertexAttributeFormat.BYTE, 3, true)
             // TODO: This is really dumb - we don't need 16 bytes, we need 2 at most
-            .addElement(ChunkMeshAttribute.BLOCK_ID, 32, GlVertexAttributeFormat.FLOAT, 4, false)
+            .addElement(IrisChunkMeshAttributes.BLOCK_ID, 32, GlVertexAttributeFormat.FLOAT, 4, false)
             .build();
 
     public static final float MODEL_SCALE = (32.0f / 65536.0f);

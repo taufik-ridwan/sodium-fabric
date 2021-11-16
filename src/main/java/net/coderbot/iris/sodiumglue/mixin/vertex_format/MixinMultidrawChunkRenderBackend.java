@@ -4,9 +4,9 @@ import me.jellysquid.mods.sodium.client.gl.attribute.GlVertexAttributeBinding;
 import me.jellysquid.mods.sodium.client.model.vertex.type.ChunkVertexType;
 import me.jellysquid.mods.sodium.client.render.chunk.backends.multidraw.MultidrawChunkRenderBackend;
 import me.jellysquid.mods.sodium.client.render.chunk.backends.multidraw.MultidrawGraphicsState;
-import me.jellysquid.mods.sodium.client.render.chunk.format.ChunkMeshAttribute;
 import me.jellysquid.mods.sodium.client.render.chunk.shader.ChunkRenderShaderBackend;
 import net.coderbot.iris.sodiumglue.impl.IrisChunkShaderBindingPoints;
+import net.coderbot.iris.sodiumglue.impl.vertex_format.IrisChunkMeshAttributes;
 import org.apache.commons.lang3.ArrayUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -31,13 +31,13 @@ public abstract class MixinMultidrawChunkRenderBackend extends ChunkRenderShader
     private GlVertexAttributeBinding[] iris$addAdditionalBindings(GlVertexAttributeBinding[] base) {
         return ArrayUtils.addAll(base,
                 new GlVertexAttributeBinding(IrisChunkShaderBindingPoints.BLOCK_ID,
-                        vertexFormat.getAttribute(ChunkMeshAttribute.BLOCK_ID)),
+                        vertexFormat.getAttribute(IrisChunkMeshAttributes.BLOCK_ID)),
                 new GlVertexAttributeBinding(IrisChunkShaderBindingPoints.MID_TEX_COORD,
-                        vertexFormat.getAttribute(ChunkMeshAttribute.MID_TEX_COORD)),
+                        vertexFormat.getAttribute(IrisChunkMeshAttributes.MID_TEX_COORD)),
                 new GlVertexAttributeBinding(IrisChunkShaderBindingPoints.TANGENT,
-                        vertexFormat.getAttribute(ChunkMeshAttribute.TANGENT)),
+                        vertexFormat.getAttribute(IrisChunkMeshAttributes.TANGENT)),
                 new GlVertexAttributeBinding(IrisChunkShaderBindingPoints.NORMAL,
-                        vertexFormat.getAttribute(ChunkMeshAttribute.NORMAL))
+                        vertexFormat.getAttribute(IrisChunkMeshAttributes.NORMAL))
         );
     }
 }

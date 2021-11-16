@@ -3,7 +3,7 @@ package net.coderbot.iris.sodiumglue.mixin.vertex_format;
 import me.jellysquid.mods.sodium.client.gl.attribute.GlVertexAttribute;
 import me.jellysquid.mods.sodium.client.gl.attribute.GlVertexAttributeFormat;
 import me.jellysquid.mods.sodium.client.gl.attribute.GlVertexFormat;
-import me.jellysquid.mods.sodium.client.render.chunk.format.ChunkMeshAttribute;
+import net.coderbot.iris.sodiumglue.impl.vertex_format.IrisChunkMeshAttributes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -23,8 +23,8 @@ public class MixinGlVertexFormatBuilder {
         Object value = map.get(key);
 
         if (value == null) {
-            if (key == ChunkMeshAttribute.NORMAL || key == ChunkMeshAttribute.TANGENT
-                    || key == ChunkMeshAttribute.MID_TEX_COORD || key == ChunkMeshAttribute.BLOCK_ID) {
+            if (key == IrisChunkMeshAttributes.NORMAL || key == IrisChunkMeshAttributes.TANGENT
+                    || key == IrisChunkMeshAttributes.MID_TEX_COORD || key == IrisChunkMeshAttributes.BLOCK_ID) {
                 // Missing these attributes is acceptable and will be handled properly.
                 return EMPTY;
             }
