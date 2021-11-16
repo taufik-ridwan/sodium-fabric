@@ -459,6 +459,10 @@ public class ChunkRenderManager<T extends ChunkGraphicsState> implements ChunkSt
     }
 
     public void updateChunks() {
+        if (ShadowRenderingState.areShadowsCurrentlyBeingRendered()) {
+            return;
+        }
+
         Deque<CompletableFuture<ChunkBuildResult<T>>> futures = new ArrayDeque<>();
 
         int budget = this.builder.getSchedulingBudget();
