@@ -1,4 +1,4 @@
-package net.coderbot.iris.sodiumglue.xhfp;
+package net.coderbot.iris.sodiumglue.impl.vertex_format.xhfp;
 
 import java.nio.ByteBuffer;
 

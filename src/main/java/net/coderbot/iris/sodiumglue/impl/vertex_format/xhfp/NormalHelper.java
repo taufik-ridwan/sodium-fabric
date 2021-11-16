@@ -1,4 +1,4 @@
-package net.coderbot.iris.sodiumglue.xhfp;
+package net.coderbot.iris.sodiumglue.impl.vertex_format.xhfp;
 
 /*
  * Copyright (c) 2016, 2017, 2018, 2019 FabricMC

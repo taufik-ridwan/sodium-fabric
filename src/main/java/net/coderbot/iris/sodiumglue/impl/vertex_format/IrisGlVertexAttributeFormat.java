@@ -1,4 +1,4 @@
-package net.coderbot.iris.sodiumglue;
+package net.coderbot.iris.sodiumglue.impl.vertex_format;
 
 import me.jellysquid.mods.sodium.client.gl.attribute.GlVertexAttributeFormat;
 import net.coderbot.iris.sodiumglue.mixin.vertex_format.GlVertexAttributeFormatAccessor;

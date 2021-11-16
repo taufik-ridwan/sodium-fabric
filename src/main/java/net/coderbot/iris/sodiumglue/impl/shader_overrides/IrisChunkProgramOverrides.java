@@ -14,7 +14,8 @@ import net.coderbot.iris.gl.program.ProgramUniforms;
 import net.coderbot.iris.pipeline.SodiumTerrainPipeline;
 import net.coderbot.iris.pipeline.WorldRenderingPipeline;
 import net.coderbot.iris.shadows.ShadowRenderingState;
-import net.coderbot.iris.sodiumglue.IrisChunkShaderBindingPoints;
+// TODO: Dependency on
+import net.coderbot.iris.sodiumglue.impl.IrisChunkShaderBindingPoints;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 

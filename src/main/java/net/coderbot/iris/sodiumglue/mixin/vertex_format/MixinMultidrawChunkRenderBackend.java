@@ -6,7 +6,7 @@ import me.jellysquid.mods.sodium.client.render.chunk.backends.multidraw.Multidra
 import me.jellysquid.mods.sodium.client.render.chunk.backends.multidraw.MultidrawGraphicsState;
 import me.jellysquid.mods.sodium.client.render.chunk.format.ChunkMeshAttribute;
 import me.jellysquid.mods.sodium.client.render.chunk.shader.ChunkRenderShaderBackend;
-import net.coderbot.iris.sodiumglue.IrisChunkShaderBindingPoints;
+import net.coderbot.iris.sodiumglue.impl.IrisChunkShaderBindingPoints;
 import org.apache.commons.lang3.ArrayUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

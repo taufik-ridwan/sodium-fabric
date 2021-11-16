@@ -1,4 +1,4 @@
-package net.coderbot.iris.sodiumglue;
+package net.coderbot.iris.sodiumglue.impl;
 
 import me.jellysquid.mods.sodium.client.gl.shader.ShaderBindingPoint;
 
