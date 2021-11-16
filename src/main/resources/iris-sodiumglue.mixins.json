@@ -17,6 +17,7 @@
     "separate_ao.MixinFluidRenderer",
     "shadow_map.MixinGameRendererContext",
     "shadow_map.MixinSodiumWorldRenderer",
+    "tweaks.MixinChunkRenderManager",
     "vertex_format.MixinSodiumWorldRenderer"
   ]
 }

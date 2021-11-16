@@ -29,7 +29,6 @@ import me.jellysquid.mods.sodium.client.world.ChunkStatusListener;
 import me.jellysquid.mods.sodium.common.util.DirectionUtil;
 import me.jellysquid.mods.sodium.common.util.IdTable;
 import me.jellysquid.mods.sodium.common.util.collections.FutureDequeDrain;
-import net.coderbot.iris.Iris;
 import net.coderbot.iris.shadows.ShadowRenderingState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.client.render.Camera;
@@ -165,8 +164,7 @@ public class ChunkRenderManager<T extends ChunkGraphicsState> implements ChunkSt
 
         this.useFogCulling = false;
 
-        // Iris: disable fog culling when shaders are enabled since shaderpacks aren't guaranteed to actually implement fog.
-        if (SodiumClientMod.options().advanced.useFogOcclusion && !Iris.getCurrentPack().isPresent()) {
+        if (SodiumClientMod.options().advanced.useFogOcclusion) {
             float dist = LegacyFogHelper.getFogCutoff() + FOG_PLANE_OFFSET;
 
             if (dist != 0.0f) {
