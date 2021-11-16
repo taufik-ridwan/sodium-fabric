@@ -14,6 +14,8 @@
     "directional_shading.MixinFlatLightPipeline",
     "directional_shading.MixinSmoothLightPipeline",
     "options.MixinChunkRenderManager",
+    "options.MixinSodiumGameOptions",
+    "options.MixinSodiumOptionsGUI",
     "separate_ao.MixinBlockRenderer",
     "separate_ao.MixinFluidRenderer",
     "shader_overrides.MixinChunkProgram",

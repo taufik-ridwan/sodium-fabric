@@ -15,7 +15,7 @@ import java.io.IOException;
 @Mixin(SodiumGameOptions.class)
 public class MixinSodiumGameOptions {
     @Inject(method = "writeChanges()V", at = @At("RETURN"), remap = false)
-    public void writeChanges() throws IOException {
+    public void iris$writeIrisConfig() throws IOException {
         try {
             Iris.getIrisConfig().save();
         } catch (IOException e) {
