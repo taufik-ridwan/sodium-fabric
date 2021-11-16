@@ -23,6 +23,8 @@
     "shadow_map.MixinSodiumWorldRenderer",
     "tweaks.MixinChunkRenderManager",
     "vertex_format.MixinSodiumWorldRenderer",
+    "vertex_format.MixinChunkOneshotGraphicsState",
+    "vertex_format.MixinMultidrawChunkRenderBackend",
     "vertex_format.GlVertexAttributeFormatAccessor"
   ]
 }
