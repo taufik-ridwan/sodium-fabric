@@ -12,7 +12,7 @@ import net.minecraft.client.options.GameOptions;
 
 public class IrisSodiumOptions {
     public static OptionImpl<GameOptions, Integer> createMaxShadowDistanceSlider(MinecraftOptionsStorage vanillaOpts) {
-        return OptionImpl.createBuilder(int.class, vanillaOpts)
+        OptionImpl<GameOptions, Integer> maxShadowDistanceSlider = OptionImpl.createBuilder(int.class, vanillaOpts)
                 .setName("Max Shadow Distance")
                 .setTooltip("The shadow render distance controls how far away terrain can potentially be rendered in the shadow pass. Lower distances mean that less terrain will be " +
                         "rendered, improving frame rates. This option cannot be changed on packs which explicitly specify a shadow render distance. The actual shadow render distance is capped by the " +
@@ -21,8 +21,12 @@ public class IrisSodiumOptions {
                 .setBinding((options, value) -> IrisVideoSettings.shadowDistance = value,
                         options -> IrisVideoSettings.getOverriddenShadowDistance(IrisVideoSettings.shadowDistance))
                 .setImpact(OptionImpact.HIGH)
-                .setEnabled(IrisVideoSettings::isShadowDistanceSliderEnabled)
+                .setEnabled(true)
                 .build();
+
+        ((OptionImplExtended) maxShadowDistanceSlider).iris$dynamicallyEnable(IrisVideoSettings::isShadowDistanceSliderEnabled);
+
+        return maxShadowDistanceSlider;
     }
 
     public static OptionImpl<GameOptions, SupportedGraphicsMode> createLimitedVideoSettingsButton(MinecraftOptionsStorage vanillaOpts) {
