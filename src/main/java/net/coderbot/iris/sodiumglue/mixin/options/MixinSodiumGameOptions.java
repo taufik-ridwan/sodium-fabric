@@ -5,6 +5,7 @@ import net.coderbot.iris.Iris;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.io.IOException;
 
@@ -15,7 +16,7 @@ import java.io.IOException;
 @Mixin(SodiumGameOptions.class)
 public class MixinSodiumGameOptions {
     @Inject(method = "writeChanges()V", at = @At("RETURN"), remap = false)
-    public void iris$writeIrisConfig() throws IOException {
+    public void iris$writeIrisConfig(CallbackInfo ci) {
         try {
             Iris.getIrisConfig().save();
         } catch (IOException e) {
