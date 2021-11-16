@@ -4,8 +4,6 @@ import me.jellysquid.mods.sodium.client.render.chunk.format.hfp.HFPModelVertexTy
 import me.jellysquid.mods.sodium.client.render.chunk.format.sfp.SFPModelVertexType;
 
 public class DefaultModelVertexFormats {
-    // Iris start: temporarily disable DefaultModelVertexFormats to prevent a crash.
-    public static final HFPModelVertexType MODEL_VERTEX_HFP = null; // new HFPModelVertexType();
-    public static final SFPModelVertexType MODEL_VERTEX_SFP = null; // new SFPModelVertexType();
-    // Iris end
+    public static final HFPModelVertexType MODEL_VERTEX_HFP = new HFPModelVertexType();
+    public static final SFPModelVertexType MODEL_VERTEX_SFP = new SFPModelVertexType();
 }

@@ -24,6 +24,7 @@
     "tweaks.MixinChunkRenderManager",
     "vertex_format.MixinSodiumWorldRenderer",
     "vertex_format.MixinChunkOneshotGraphicsState",
+    "vertex_format.MixinGlVertexFormatBuilder",
     "vertex_format.MixinMultidrawChunkRenderBackend",
     "vertex_format.GlVertexAttributeFormatAccessor"
   ]
