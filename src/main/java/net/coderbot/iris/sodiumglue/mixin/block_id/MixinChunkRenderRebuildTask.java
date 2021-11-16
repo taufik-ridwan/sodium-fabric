@@ -1,4 +1,4 @@
-package net.coderbot.iris.sodiumglue.mixin;
+package net.coderbot.iris.sodiumglue.mixin.block_id;
 
 import me.jellysquid.mods.sodium.client.render.chunk.compile.ChunkBuildBuffers;
 import me.jellysquid.mods.sodium.client.render.chunk.compile.ChunkBuildResult;

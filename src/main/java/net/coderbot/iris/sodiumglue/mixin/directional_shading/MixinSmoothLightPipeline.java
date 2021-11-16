@@ -1,4 +1,4 @@
-package net.coderbot.iris.sodiumglue.mixin;
+package net.coderbot.iris.sodiumglue.mixin.directional_shading;
 
 import me.jellysquid.mods.sodium.client.model.light.data.QuadLightData;
 import me.jellysquid.mods.sodium.client.model.light.smooth.SmoothLightPipeline;

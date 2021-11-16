@@ -1,4 +1,4 @@
-package net.coderbot.iris.sodiumglue.mixin;
+package net.coderbot.iris.sodiumglue.mixin.shadow_map;
 
 import me.jellysquid.mods.sodium.client.render.GameRendererContext;
 import net.coderbot.iris.shadows.ShadowRenderingState;

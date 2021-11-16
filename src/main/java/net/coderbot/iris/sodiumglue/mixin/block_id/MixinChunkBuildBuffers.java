@@ -1,4 +1,4 @@
-package net.coderbot.iris.sodiumglue.mixin;
+package net.coderbot.iris.sodiumglue.mixin.block_id;
 
 import me.jellysquid.mods.sodium.client.model.vertex.VertexSink;
 import me.jellysquid.mods.sodium.client.model.vertex.buffer.VertexBufferView;
