@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.Shadow;
  */
 @Mixin(ChunkMeshAttribute.class)
 public class MixinChunkMeshAttribute {
-    @Shadow
+    @Shadow(remap = false)
     @Final
     @Mutable
     private static ChunkMeshAttribute[] $VALUES;

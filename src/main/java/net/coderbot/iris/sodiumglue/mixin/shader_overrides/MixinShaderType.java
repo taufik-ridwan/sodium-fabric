@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.Shadow;
 
 @Mixin(ShaderType.class)
 public class MixinShaderType {
-    @Shadow
+    @Shadow(remap = false)
     @Final
     @Mutable
     private static ShaderType[] $VALUES;
