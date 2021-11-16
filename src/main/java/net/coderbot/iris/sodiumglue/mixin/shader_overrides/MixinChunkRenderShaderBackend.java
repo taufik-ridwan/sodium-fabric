@@ -1,4 +1,4 @@
-package net.coderbot.iris.sodiumglue.mixin.backend;
+package net.coderbot.iris.sodiumglue.mixin.shader_overrides;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import me.jellysquid.mods.sodium.client.gl.device.RenderDevice;

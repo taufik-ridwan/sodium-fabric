@@ -1,4 +1,4 @@
-package net.coderbot.iris.sodiumglue.mixin.backend;
+package net.coderbot.iris.sodiumglue.mixin.shader_overrides;
 
 import me.jellysquid.mods.sodium.client.render.chunk.shader.ChunkProgram;
 import net.coderbot.iris.texunits.TextureUnit;
