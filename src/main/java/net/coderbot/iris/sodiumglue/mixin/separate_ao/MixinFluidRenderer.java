@@ -22,14 +22,14 @@ public class MixinFluidRenderer {
     @Unique
     private boolean useSeparateAo;
 
-    @Inject(method = "render", at = @At("HEAD"))
+    @Inject(method = "render", remap = false, at = @At("HEAD"))
     private void iris$cacheSeparateAoSetting(BlockRenderView world, FluidState fluidState, BlockPos pos,
                                              ChunkModelBuffers buffers, CallbackInfoReturnable<Boolean> cir) {
         this.useSeparateAo = BlockRenderingSettings.INSTANCE.shouldUseSeparateAo();
     }
 
-    @Redirect(method = "calculateQuadColors",
-            at = @At(value = "INVOKE", target = "me/jellysquid/mods/sodium/client/util/color/ColorABGR.mul (IF)I"))
+    @Redirect(method = "calculateQuadColors", remap = false,
+            at = @At(value = "INVOKE", target = "me/jellysquid/mods/sodium/client/util/color/ColorABGR.mul (IF)I", remap = false))
     private int iris$applySeparateAo(int color, float ao) {
         if (useSeparateAo) {
             color &= 0x00FFFFFF;

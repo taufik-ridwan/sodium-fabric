@@ -24,14 +24,16 @@ public class MixinBlockRenderer {
     @Unique
     private boolean useSeparateAo;
 
-    @Inject(method = "renderModel", at = @At("HEAD"))
+    @Inject(method = "renderModel", remap = false, at = @At("HEAD"))
     private void renderModel(BlockRenderView world, BlockState state, BlockPos pos, BakedModel model,
                                ChunkModelBuffers buffers, boolean cull, long seed, CallbackInfoReturnable<Boolean> cir) {
         this.useSeparateAo = BlockRenderingSettings.INSTANCE.shouldUseSeparateAo();
     }
 
-    @Redirect(method = "renderQuad",
-            at = @At(value = "INVOKE", target = "me/jellysquid/mods/sodium/client/util/color/ColorABGR.mul (IF)I"))
+    @Redirect(method = "renderQuad", remap = false,
+            at = @At(value = "INVOKE",
+                    target = "me/jellysquid/mods/sodium/client/util/color/ColorABGR.mul (IF)I",
+                    remap = false))
     private int iris$applySeparateAo(int color, float ao) {
         if (useSeparateAo) {
             color &= 0x00FFFFFF;
