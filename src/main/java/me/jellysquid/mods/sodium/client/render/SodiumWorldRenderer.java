@@ -288,16 +288,11 @@ public class SodiumWorldRenderer implements ChunkStatusListener {
 
         final ChunkVertexType vertexFormat;
 
-        // Iris start: use extended vertex format
-        /*
         if (opts.advanced.useCompactVertexFormat) {
             vertexFormat = DefaultModelVertexFormats.MODEL_VERTEX_HFP;
         } else {
             vertexFormat = DefaultModelVertexFormats.MODEL_VERTEX_SFP;
         }
-        */
-        vertexFormat = IrisModelVertexFormats.MODEL_VERTEX_XHFP;
-        // Iris end
 
         this.chunkRenderBackend = createChunkRenderBackend(device, opts, vertexFormat);
         this.chunkRenderBackend.createShaders(device);
