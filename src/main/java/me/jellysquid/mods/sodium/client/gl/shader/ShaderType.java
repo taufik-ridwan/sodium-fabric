@@ -8,7 +8,6 @@ import org.lwjgl.opengl.GL32C;
  */
 public enum ShaderType {
     VERTEX(GL20C.GL_VERTEX_SHADER),
-    GEOMETRY(GL32C.GL_GEOMETRY_SHADER),
     FRAGMENT(GL20C.GL_FRAGMENT_SHADER);
 
     public final int id;
