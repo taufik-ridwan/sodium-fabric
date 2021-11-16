@@ -400,7 +400,7 @@ public class ChunkRenderManager<T extends ChunkGraphicsState> implements ChunkSt
         RenderDevice device = RenderDevice.INSTANCE;
         CommandList commandList = device.createCommandList();
 
-        this.backend.begin(matrixStack, pass);
+        this.backend.begin(matrixStack);
         this.backend.render(commandList, iterator, new ChunkCameraContext(x, y, z));
         this.backend.end(matrixStack);
 

@@ -19,6 +19,7 @@ import net.coderbot.iris.pipeline.WorldRenderingPipeline;
 import net.coderbot.iris.shadows.ShadowRenderingState;
 import net.coderbot.iris.sodiumglue.IrisChunkShaderBindingPoints;
 import net.coderbot.iris.sodiumglue.backend.IrisChunkProgram;
+import net.coderbot.iris.sodiumglue.duck.ChunkRenderBackendExt;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
@@ -27,7 +28,7 @@ import java.util.Locale;
 import java.util.Optional;
 
 public abstract class ChunkRenderShaderBackend<T extends ChunkGraphicsState>
-        implements ChunkRenderBackend<T> {
+        implements ChunkRenderBackend<T>, ChunkRenderBackendExt {
     private final EnumMap<ChunkFogMode, EnumMap<BlockRenderPass, ChunkProgram>> programs = new EnumMap<>(ChunkFogMode.class);
     private final EnumMap<ChunkFogMode, EnumMap<BlockRenderPass, ChunkProgram>> shadowPrograms = new EnumMap<>(ChunkFogMode.class);
 
@@ -176,6 +177,11 @@ public abstract class ChunkRenderShaderBackend<T extends ChunkGraphicsState>
         }
 
         return shaders;
+    }
+
+    @Override
+    public void begin(MatrixStack matrixStack) {
+        throw new UnsupportedOperationException("Attempted to call non-pass-sensitive begin() method");
     }
 
     @Override
