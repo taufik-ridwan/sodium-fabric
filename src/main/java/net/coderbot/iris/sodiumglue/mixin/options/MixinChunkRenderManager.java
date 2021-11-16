@@ -1,4 +1,4 @@
-package net.coderbot.iris.sodiumglue.mixin.tweaks;
+package net.coderbot.iris.sodiumglue.mixin.options;
 
 import me.jellysquid.mods.sodium.client.gui.SodiumGameOptions;
 import me.jellysquid.mods.sodium.client.render.chunk.ChunkRenderManager;
