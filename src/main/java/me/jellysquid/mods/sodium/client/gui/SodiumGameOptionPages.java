@@ -14,6 +14,7 @@ import me.jellysquid.mods.sodium.client.render.chunk.backends.multidraw.Multidra
 import me.jellysquid.mods.sodium.client.util.UnsafeUtil;
 import net.coderbot.iris.Iris;
 import net.coderbot.iris.gui.option.IrisVideoSettings;
+import net.coderbot.iris.sodiumglue.impl.options.SupportedGraphicsMode;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.Framebuffer;
 import net.minecraft.client.options.AttackIndicator;
@@ -145,26 +146,6 @@ public class SodiumGameOptionPages {
                 .build());
 
         return new OptionPage("General", ImmutableList.copyOf(groups));
-    }
-
-    enum SupportedGraphicsMode {
-        FAST, FANCY;
-
-        static SupportedGraphicsMode fromVanilla(GraphicsMode vanilla) {
-            if (vanilla == GraphicsMode.FAST) {
-                return FAST;
-            } else {
-                return FANCY;
-            }
-        }
-
-        GraphicsMode toVanilla() {
-            if (this == FAST) {
-                return GraphicsMode.FAST;
-            } else {
-                return GraphicsMode.FANCY;
-            }
-        }
     }
 
     public static OptionPage quality() {
