@@ -197,5 +197,7 @@ public class IrisChunkProgramOverrides {
                 program.delete();
             }
         }
+
+        this.programs.clear();
     }
 }

@@ -19,7 +19,7 @@ public class MixinChunkRenderManager {
     private void iris$backendBeginExt(ChunkRenderBackend<?> backend, MatrixStack matrixStack,
                                       MatrixStack matrixStackArg, BlockRenderPass pass, double x, double y, double z) {
         if (backend instanceof ChunkRenderBackendExt) {
-            ((ChunkRenderBackendExt) backend).begin(matrixStack, pass);
+            ((ChunkRenderBackendExt) backend).iris$begin(matrixStack, pass);
         } else {
             backend.begin(matrixStack);
         }

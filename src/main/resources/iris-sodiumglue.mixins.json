@@ -11,6 +11,7 @@
   "client": [
     "backend.MixinChunkProgram",
     "backend.MixinChunkRenderManager",
+    "backend.MixinChunkRenderShaderBackend",
     "block_id.MixinChunkBuildBuffers",
     "block_id.MixinChunkRenderRebuildTask",
     "directional_shading.MixinFlatLightPipeline",
