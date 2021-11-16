@@ -18,6 +18,7 @@ import net.coderbot.iris.pipeline.SodiumTerrainPipeline;
 import net.coderbot.iris.pipeline.WorldRenderingPipeline;
 import net.coderbot.iris.shadows.ShadowRenderingState;
 import net.coderbot.iris.sodiumglue.IrisChunkShaderBindingPoints;
+import net.coderbot.iris.sodiumglue.backend.IrisChunkProgram;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
@@ -125,20 +126,20 @@ public abstract class ChunkRenderShaderBackend<T extends ChunkGraphicsState>
                     .bindAttribute("a_Normal", IrisChunkShaderBindingPoints.NORMAL)
                     .bindAttribute("d_ModelOffset", ChunkShaderBindingPoints.MODEL_OFFSET)
                     .build((program, name) -> {
-                        ProgramUniforms uniforms = null;
-                        ProgramSamplers samplers = null;
-
                         if (pipeline != null) {
-                            uniforms = pipeline.initUniforms(name);
+                            ProgramUniforms uniforms = pipeline.initUniforms(name);
+                            ProgramSamplers samplers;
 
                             if (shadow) {
                                 samplers = pipeline.initShadowSamplers(name);
                             } else {
                                 samplers = pipeline.initTerrainSamplers(name);
                             }
-                        }
 
-                        return new ChunkProgram(device, program, name, fogMode.getFactory(), uniforms, samplers);
+                            return new IrisChunkProgram(device, program, name, uniforms, samplers);
+                        } else {
+                            return new ChunkProgram(device, program, name, fogMode.getFactory());
+                        }
                     });
         } finally {
             vertShader.delete();

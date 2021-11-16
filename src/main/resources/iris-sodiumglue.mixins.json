@@ -9,6 +9,7 @@
     "conformVisibility": true
   },
   "client": [
+    "backend.MixinChunkProgram",
     "block_id.MixinChunkBuildBuffers",
     "block_id.MixinChunkRenderRebuildTask",
     "directional_shading.MixinFlatLightPipeline",
