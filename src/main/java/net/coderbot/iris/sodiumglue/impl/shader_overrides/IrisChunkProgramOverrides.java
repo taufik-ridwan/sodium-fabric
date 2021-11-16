@@ -69,7 +69,7 @@ public class IrisChunkProgramOverrides {
             return null;
         }
 
-        return new GlShader(device, ShaderType.GEOMETRY, new Identifier("iris", "sodium-terrain.gsh"),
+        return new GlShader(device, IrisShaderTypes.GEOMETRY, new Identifier("iris", "sodium-terrain.gsh"),
                 source, EMPTY_CONSTANTS);
     }
 
