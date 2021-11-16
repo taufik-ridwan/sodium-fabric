@@ -9,8 +9,8 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Matrix4f;
 import org.jetbrains.annotations.Nullable;
-import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL20C;
+import org.lwjgl.system.MemoryStack;
 
 import java.nio.FloatBuffer;
 
@@ -56,13 +56,18 @@ public class IrisChunkProgram extends ChunkProgram {
 
     @Override
     public int getUniformLocation(String name) {
-        // TODO: Suppress / remap Sodium uniform names
+        // NB: We pass through calls involving u_ModelViewProjectionMatrix, u_ModelScale, and u_TextureScale, since
+        //     currently patched Iris shader programs use those.
+
+        if ("u_BlockTex".equals(name) || "u_LightTex".equals(name)) {
+            // Not relevant for Iris shader programs
+            return -1;
+        }
 
         try {
             return super.getUniformLocation(name);
         } catch (NullPointerException e) {
             // Suppress getUniformLocation
-            // TODO: Better way to cancel accesses to these uniforms?
             return -1;
         }
     }
@@ -72,11 +77,12 @@ public class IrisChunkProgram extends ChunkProgram {
             return;
         }
 
-        // TODO: Don't use BufferUtils here...
-        FloatBuffer buffer = BufferUtils.createFloatBuffer(16);
-        matrix.writeToBuffer(buffer);
-        buffer.rewind();
+        try (MemoryStack memoryStack = MemoryStack.stackPush()) {
+            FloatBuffer buffer = memoryStack.mallocFloat(16);
 
-        GL20C.glUniformMatrix4fv(location, false, buffer);
+            matrix.writeToBuffer(buffer);
+
+            GL20C.glUniformMatrix4fv(location, false, buffer);
+        }
     }
 }
