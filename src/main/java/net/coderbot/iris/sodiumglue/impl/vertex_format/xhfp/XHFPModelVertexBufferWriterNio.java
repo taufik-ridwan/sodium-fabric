@@ -1,24 +1,23 @@
-package me.jellysquid.mods.sodium.client.render.chunk.format.xhfp;
+package net.coderbot.iris.sodiumglue.impl.vertex_format.xhfp;
 
 import java.nio.ByteBuffer;
 
 import me.jellysquid.mods.sodium.client.model.vertex.buffer.VertexBufferView;
 import me.jellysquid.mods.sodium.client.model.vertex.buffer.VertexBufferWriterNio;
-import me.jellysquid.mods.sodium.client.render.chunk.format.MaterialIdHolder;
-import me.jellysquid.mods.sodium.client.render.chunk.format.DefaultModelVertexFormats;
+import net.coderbot.iris.sodiumglue.impl.block_id.MaterialIdHolder;
 import me.jellysquid.mods.sodium.client.render.chunk.format.ModelVertexSink;
 import me.jellysquid.mods.sodium.client.render.chunk.format.ModelVertexUtil;
 import me.jellysquid.mods.sodium.client.util.Norm3b;
 
+import net.coderbot.iris.sodiumglue.impl.block_id.MaterialIdAwareVertexWriter;
+import net.coderbot.iris.sodiumglue.impl.vertex_format.IrisModelVertexFormats;
 import net.minecraft.client.util.math.Vector3f;
 
-public class XHFPModelVertexBufferWriterNio extends VertexBufferWriterNio implements ModelVertexSink {
+public class XHFPModelVertexBufferWriterNio extends VertexBufferWriterNio implements ModelVertexSink, MaterialIdAwareVertexWriter {
     private MaterialIdHolder idHolder;
 
-    public XHFPModelVertexBufferWriterNio(VertexBufferView backingBuffer, MaterialIdHolder idHolder) {
-        super(backingBuffer, DefaultModelVertexFormats.MODEL_VERTEX_XHFP);
-
-        this.idHolder = idHolder;
+    public XHFPModelVertexBufferWriterNio(VertexBufferView backingBuffer) {
+        super(backingBuffer, IrisModelVertexFormats.MODEL_VERTEX_XHFP);
     }
 
     private static final int STRIDE = 48;
@@ -221,5 +220,10 @@ public class XHFPModelVertexBufferWriterNio extends VertexBufferWriterNio implem
         } else {
             return (float) (1.0 / Math.sqrt(value));
         }
+    }
+
+    @Override
+    public void iris$setIdHolder(MaterialIdHolder holder) {
+        this.idHolder = holder;
     }
 }

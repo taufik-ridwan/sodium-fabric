@@ -8,6 +8,7 @@ import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.opengl.GL20C;
+import org.lwjgl.opengl.GL20C;
 
 /**
  * An OpenGL shader program.
@@ -72,9 +73,7 @@ public abstract class GlProgram extends GlObject {
         }
 
         public Builder attachShader(GlShader shader) {
-            if (shader != null) {
-                GL20C.glAttachShader(this.program, shader.handle());
-            }
+            GL20C.glAttachShader(this.program, shader.handle());
 
             return this;
         }

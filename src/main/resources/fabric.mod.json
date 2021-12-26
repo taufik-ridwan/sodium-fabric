@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "sodium",
-  "version": "${version}",
+  "version": "{version}",
   "name": "Sodium",
   "description": "Sodium is a free and open-source optimization mod for Minecraft which improves frame rates and reduces lag spikes.",
   "authors": [
@@ -24,7 +24,8 @@
   },
   "accessWidener": "sodium.accesswidener",
   "mixins": [
-    "sodium.mixins.json"
+    "sodium.mixins.json",
+    "iris-sodiumglue.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.8.0",

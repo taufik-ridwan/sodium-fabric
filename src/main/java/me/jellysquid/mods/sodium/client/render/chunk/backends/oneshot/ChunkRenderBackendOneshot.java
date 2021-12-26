@@ -4,7 +4,6 @@ import me.jellysquid.mods.sodium.client.gl.device.CommandList;
 import me.jellysquid.mods.sodium.client.gl.device.DrawCommandList;
 import me.jellysquid.mods.sodium.client.gl.device.RenderDevice;
 import me.jellysquid.mods.sodium.client.gl.shader.GlShader;
-import me.jellysquid.mods.sodium.client.gl.shader.ShaderConstants;
 import me.jellysquid.mods.sodium.client.gl.shader.ShaderLoader;
 import me.jellysquid.mods.sodium.client.gl.shader.ShaderType;
 import me.jellysquid.mods.sodium.client.gl.util.BufferSlice;
@@ -89,7 +88,7 @@ public class ChunkRenderBackendOneshot extends ChunkRenderShaderBackend<ChunkOne
         float modelX = camera.getChunkModelOffset(state.getX(), camera.blockOriginX, camera.originX);
         float modelY = camera.getChunkModelOffset(state.getY(), camera.blockOriginY, camera.originY);
         float modelZ = camera.getChunkModelOffset(state.getZ(), camera.blockOriginZ, camera.originZ);
-
+        
         try (MemoryStack stack = MemoryStack.stackPush()) {
             FloatBuffer fb = stack.mallocFloat(4);
             fb.put(0, modelX);
